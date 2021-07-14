@@ -222,8 +222,43 @@ namespace csharp_edu
             // #endregion
 
 
-            Animal animal = new Animal("barsik");
+            #region key arguments
 
+            Animal barsik = new Animal("barsik", "nya");
+            barsik.Height = 10;
+            barsik.Weight = 7;
+            barsik.Sound = "nya";
+            
+            Animal murzik = new Animal
+            {
+                Name = "murzik",
+                Sound = "nya"
+            };
+
+            Console.WriteLine("Number of animals = " + Animal.NumOfAnimals);
+            
+            #endregion
+
+            #region Person
+
+            Person person = new Person("Joe", "Snow");
+            Console.WriteLine(person.Name);
+
+            #endregion
         }
+
+        #region overload
+
+        public static int GetSum(int first = 1, int second = 2)
+        {
+            return first + second;
+        }
+
+        public static double GetSum(double first = 1, double second = 2)
+        {
+            return first + second;
+        }
+
+        #endregion
     }
 }
