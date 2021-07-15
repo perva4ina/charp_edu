@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using Accounts;
 
 namespace csharp_edu
 {
     class Program
     {
+        delegate int Calculate(int one, int two);
+
         static void Main(string[] args)
         {
             // #region console
@@ -46,7 +50,7 @@ namespace csharp_edu
             // //like Java
             //
             // #endregion
-
+            //
             // #region numbers
             //
             // double num1 = 10.5;
@@ -58,7 +62,7 @@ namespace csharp_edu
             // Console.WriteLine("Generate random between 1 and 10 " + random.Next(1, 11));
             //
             // #endregion
-
+            //
             // #region if
             //
             // int age = 17;
@@ -77,7 +81,7 @@ namespace csharp_edu
             // }
             //
             // #endregion
-
+            //
             // #region ternary
             //
             // int driveAge = 16;
@@ -85,8 +89,8 @@ namespace csharp_edu
             // bool canDrive = driveAge >= 16 ? true : false;
             //
             // #endregion
-
-            // #region swithch
+            //
+            // #region switch
             //
             // int switchAge = 10;
             //
@@ -122,7 +126,7 @@ namespace csharp_edu
             // }
             //
             // #endregion
-
+            //
             // #region equals
             //
             // string first = "First value";
@@ -164,8 +168,8 @@ namespace csharp_edu
             // Console.WriteLine(joinStr);
             //
             // #endregion
-
-
+            //
+            //
             // #region array
             //
             // string[] names = new string[3] {"Bob", "Matt", "John"};
@@ -174,7 +178,7 @@ namespace csharp_edu
             // // Console.WriteLine("Null or empty " + );
             //
             // #endregion
-
+            //
             // #region list
             //
             // List<int> numList = new List<int>();
@@ -199,7 +203,7 @@ namespace csharp_edu
             // Console.WriteLine(strList.Contains("Tom", StringComparer.OrdinalIgnoreCase));
             //
             // #endregion
-
+            //
             // #region exception
             //
             // Console.WriteLine("Enter number");
@@ -220,29 +224,101 @@ namespace csharp_edu
             // //throw
             //
             // #endregion
+            //
+            //
+            // #region key arguments
+            //
+            // Animal barsik = new Animal("barsik", "nya");
+            // barsik.Height = 10;
+            // barsik.Weight = 7;
+            // barsik.Sound = "nya";
+            //
+            // Animal murzik = new Animal
+            // {
+            //     Name = "murzik",
+            //     Sound = "nya"
+            // };
+            //
+            // Console.WriteLine("Number of animals = " + Animal.NumOfAnimals);
+            //
+            // #endregion
+            //
+            // #region Person
+            //
+            // Person person = new Person("Joe", "Snow");
+            // Console.WriteLine(person.Name);
+            //
+            // #endregion
+            //
+            // #region override operator
+            //
+            // Square s1 = new Square(1);
+            // Square s2 = new Square(2);
+            // Square s3 = s1 + s2;
+            // Console.WriteLine("Square sum = " + s3);
+            //
+            // #endregion
+            //
+            // #region generics
+            //
+            // KeyValue<string, int> keyValue = new KeyValue<string, int>("Friday", 5);
+            // keyValue.showData();
+            //
+            // #endregion
+            //
+            // #region Enum
+            //
+            // Temperature temp = Temperature.Boil;
+            // printTemp(temp);
+            //
+            // #endregion
+            //
+            // #region custom library
+            //
+            // User user = new User("Mike", 22);
+            // user.Display();
+            //
+            // Employee employee = new Employee("John", 30, "DataArt");
+            // employee.Display();
+            //
+            // #endregion
+            //
+            // #region Structure
+            //
+            // string s = "INIT";
+            // Console.WriteLine($"s = {s}");
+            // string s2 = changeString(s);
+            // Console.WriteLine($"s = {s}");
+            // Console.WriteLine($"s2 = {s2}");
+            //
+            // #endregion
 
 
-            #region key arguments
+            #region delegate
 
-            Animal barsik = new Animal("barsik", "nya");
-            barsik.Height = 10;
-            barsik.Weight = 7;
-            barsik.Sound = "nya";
-            
-            Animal murzik = new Animal
-            {
-                Name = "murzik",
-                Sound = "nya"
-            };
+            //anonymous functions
+            Calculate sum = delegate(int one, int two) { return one + two; };
+            //lambda delegate
+            Calculate multi = (one, two) => one * two;
 
-            Console.WriteLine("Number of animals = " + Animal.NumOfAnimals);
-            
+            //assign to existing function
+            Calculate max = Math.Max;
+
+            Console.WriteLine($"Sum of 1 and 2 is {sum(1, 2)}");
+            Console.WriteLine($"Multiply of 3 and 4 is {multi(3, 4)}");
+            Console.WriteLine($"Max of 5 and 6 is {max(3, 4)}");
+
             #endregion
 
-            #region Person
+            #region Local function
 
-            Person person = new Person("Joe", "Snow");
-            Console.WriteLine(person.Name);
+            int LocalSum()
+            {
+                return 1 + 2;
+            }
+
+            //lambda local function
+            int LocalSumLambda() => 1 + 2;
 
             #endregion
         }
@@ -260,5 +336,30 @@ namespace csharp_edu
         }
 
         #endregion
+
+        public static void printTemp(Temperature temp)
+        {
+            switch (temp)
+            {
+                case Temperature.Freeze:
+                    Console.WriteLine($"Water is frozen. Temperature is {(int) temp}");
+                    break;
+                case Temperature.Low:
+                    Console.WriteLine($"Water is cold. Temperature is {(int) temp}");
+                    break;
+                case Temperature.Warm:
+                    Console.WriteLine($"Water is warm. Temperature is {(int) temp}");
+                    break;
+                case Temperature.Boil:
+                    Console.WriteLine($"Water is boiling. Temperature is {(int) temp}");
+                    break;
+            }
+        }
+
+        public static string changeString(string s)
+        {
+            s += " CHANGED";
+            return s;
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿# features
+- delegate
+- lambda
+- internal, protected internal, private protected
+- library project
+- namespace
+- struct
+- enum
+- new, override
+- properties
+- _private
+- generics
+- ${"string format {field}"}
+- key arguments
+- local function

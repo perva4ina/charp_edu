@@ -36,7 +36,7 @@ namespace csharp_edu
         }
 
         //OVERRIDE
-        public new string ToString()
+        public override string ToString()
         {
             return "Animal name is " + name;
         }
@@ -58,9 +58,10 @@ namespace csharp_edu
             FavoriteFood = favoriteFood;
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             return $"I am dog. My name is {Name} and my favorite food is {FavoriteFood}";
         }
     }
+    
 }
