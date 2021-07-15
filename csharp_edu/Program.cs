@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Accounts;
@@ -178,7 +179,7 @@ namespace csharp_edu
             // // Console.WriteLine("Null or empty " + );
             //
             // #endregion
-            //
+            
             // #region list
             //
             // List<int> numList = new List<int>();
@@ -201,6 +202,8 @@ namespace csharp_edu
             // //IndexOf
             // List<string> strList = new List<string>(new string[] {"Tom", "Bob", "Mike"});
             // Console.WriteLine(strList.Contains("Tom", StringComparer.OrdinalIgnoreCase));
+            // //fast init
+            // List<int> numListFast = new List<int> {5, 10, 15, 20, 25};
             //
             // #endregion
             //
@@ -294,32 +297,71 @@ namespace csharp_edu
             // #endregion
 
 
-            #region delegate
+            // #region delegate and lambda
+            //
+            // //anonymous functions
+            // Calculate sum = delegate(int one, int two) { return one + two; };
+            // //lambda delegate
+            // Calculate multi = (one, two) => one * two;
+            //
+            // //assign to existing function
+            // Calculate max = Math.Max;
+            //
+            // Console.WriteLine($"Sum of 1 and 2 is {sum(1, 2)}");
+            // Console.WriteLine($"Multiply of 3 and 4 is {multi(3, 4)}");
+            // Console.WriteLine($"Max of 5 and 6 is {max(3, 4)}");
+            //
+            // #endregion
 
-            //anonymous functions
-            Calculate sum = delegate(int one, int two) { return one + two; };
-            //lambda delegate
-            Calculate multi = (one, two) => one * two;
+            // #region Local function
+            //
+            // int LocalSum()
+            // {
+            //     return 1 + 2;
+            // }
+            //
+            // //lambda local function
+            // int LocalSumLambda() => 1 + 2;
+            // int LocalSumFunc(int x, int y) => x + y;
+            //
+            // //Func
+            // Func<int, int, int> sumFunc = (x, y) => x + y;
+            // Console.WriteLine($"Sum of 1 and 2 is {sumFunc(1, 2)}");
+            //
+            //
+            // //List
+            // List<int> listForLambda = new List<int> {5, 10, 15, 20, 25};
+            // List<int> odds = listForLambda.Where(n => n % 2 == 0).ToList();
+            // List<int> sqrList = listForLambda.Select(n => n * n).ToList();
+            //
+            //
+            // Console.WriteLine($"Initial list {string.Join(", ",listForLambda)}");
+            // Console.WriteLine($"Odds list {string.Join(", ",odds)}");
+            // Console.WriteLine($"Sqr list {string.Join(", ",sqrList)}");
+            // #endregion
 
-            //assign to existing function
-            Calculate max = Math.Max;
+            #region file IO
 
-            Console.WriteLine($"Sum of 1 and 2 is {sum(1, 2)}");
-            Console.WriteLine($"Multiply of 3 and 4 is {multi(3, 4)}");
-            Console.WriteLine($"Max of 5 and 6 is {max(3, 4)}");
-
-            #endregion
-
-            #region Local function
-
-            int LocalSum()
+            string path = "myFile.txt";
+            string[] friends = {"Tom", "Bob", "Joe"};
+            using (StreamWriter sw = new StreamWriter(path))
             {
-                return 1 + 2;
+                foreach (var friend in friends)
+                {
+                    sw.WriteLine(friend);
+                }
             }
 
-            //lambda local function
-            int LocalSumLambda() => 1 + 2;
-
+            List<string> lines = new List<string>();
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    lines.Add(line);
+                }
+            }
+            Console.WriteLine(string.Join(", ", lines));
             #endregion
         }
 

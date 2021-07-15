@@ -13,3 +13,5 @@
 - ${"string format {field}"}
 - key arguments
 - local function
+- myList.Where(()=>...).ToList()  //filer
+- myList.Select(()=>...).ToList()  //map
