@@ -15,3 +15,15 @@
 - local function
 - myList.Where(()=>...).ToList()  //filer
 - myList.Select(()=>...).ToList()  //map
+
+# learn
+- unsafe
+- uint, ulong
+- [ ]
+- assembly
+- volatile
+- multithread
+- pack unpack
+- partial class
+- Time?
+- 
